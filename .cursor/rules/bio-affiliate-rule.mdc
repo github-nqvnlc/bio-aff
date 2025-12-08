@@ -1,0 +1,964 @@
+---
+alwaysApply: true
+---
+
+# Bio Affiliate Project - Cursor Rules
+
+## Project Overview
+This is a TikTok Bio Affiliate project with complete theme customization and drag-drop layout builder. The project uses Vanilla JavaScript, Supabase (PostgreSQL), and follows a strict task-based workflow.
+
+---
+
+## Table of Contents
+
+### Workflow & Implementation
+- [WORKFLOW RULES (Pre-Implementation)](#workflow-rules-pre-implementation)
+  - [Rule 1: Always Read All Documentation First](#rule-1-always-read-all-documentation-first)
+  - [Rule 2: Task Reference Required](#rule-2-task-reference-required)
+  - [Rule 3: Understand Task Context](#rule-3-understand-task-context)
+  - [Rule 4: Check Dependencies](#rule-4-check-dependencies)
+  - [Rule 4.5: Update Task Status in task-breakdown.md](#rule-45-update-task-status-in-task-breakdownmd)
+- [IMPLEMENTATION RULES](#implementation-rules)
+  - [Rule 5: Follow Task Breakdown Exactly](#rule-5-follow-task-breakdown-exactly)
+  - [Rule 6: One Task at a Time](#rule-6-one-task-at-a-time)
+  - [Rule 7: Stop After Each Task](#rule-7-stop-after-each-task)
+  - [Rule 8: Ask Before Continuing](#rule-8-ask-before-continuing)
+  - [Rule 9: File Structure Compliance](#rule-9-file-structure-compliance)
+  - [Rule 10: Naming Conventions](#rule-10-naming-conventions)
+  - [Rule 11: Code Organization](#rule-11-code-organization)
+  - [Rule 12: Error Handling](#rule-12-error-handling)
+  - [Rule 13: Input Validation](#rule-13-input-validation)
+  - [Rule 14: Database Operations](#rule-14-database-operations)
+  - [Rule 15: CSS Variables for Theming](#rule-15-css-variables-for-theming)
+  - [Rule 16: Responsive Design Priority](#rule-16-responsive-design-priority)
+  - [Rule 17: Accessibility (WCAG 2.1 AA)](#rule-17-accessibility-wcag-21-aa)
+  - [Rule 18: Performance Requirements](#rule-18-performance-requirements)
+  - [Rule 19: No Framework Dependencies](#rule-19-no-framework-dependencies)
+  - [Rule 20: Supabase Integration](#rule-20-supabase-integration)
+
+### Code Quality & Testing
+- [CODE QUALITY RULES](#code-quality-rules)
+  - [Rule 21: Code Review Before Completion](#rule-21-code-review-before-completion)
+  - [Rule 22: Lint and Type Checking](#rule-22-lint-and-type-checking)
+  - [Rule 23: No Console.log in Production](#rule-23-no-consolelog-in-production)
+  - [Rule 24: Comment Complex Logic](#rule-24-comment-complex-logic)
+  - [Rule 25: DRY Principle](#rule-25-dry-principle)
+  - [Rule 26: Single Responsibility](#rule-26-single-responsibility)
+- [TESTING RULES](#testing-rules)
+  - [Rule 27: Test Acceptance Criteria](#rule-27-test-acceptance-criteria)
+  - [Rule 28: Manual Testing Required](#rule-28-manual-testing-required)
+  - [Rule 29: Cross-Browser Testing](#rule-29-cross-browser-testing)
+  - [Rule 30: Mobile Testing Priority](#rule-30-mobile-testing-priority)
+
+### Logging & Git
+- [LOGGING RULES](#logging-rules)
+  - [Rule 31: Create Log File After Each Task](#rule-31-create-log-file-after-each-task)
+  - [Rule 32: Log File Content](#rule-32-log-file-content)
+  - [Rule 33: Log File for Fixes](#rule-33-log-file-for-fixes)
+  - [Rule 34: Log File Structure](#rule-34-log-file-structure)
+  - [Rule 35: Create Logs Folder if Missing](#rule-35-create-logs-folder-if-missing)
+- [GIT WORKFLOW RULES](#git-workflow-rules)
+  - [Rule 36: Git Commit Format](#rule-36-git-commit-format)
+  - [Rule 37: No Vietnamese in Commits](#rule-37-no-vietnamese-in-commits)
+  - [Rule 38: Commit Only When Requested](#rule-38-commit-only-when-requested)
+  - [Rule 39: Meaningful Commit Messages](#rule-39-meaningful-commit-messages)
+
+### Documentation & Security
+- [DOCUMENTATION RULES](#documentation-rules)
+  - [Rule 40: Update Documentation](#rule-40-update-documentation)
+  - [Rule 41: JSDoc Comments](#rule-41-jsdoc-comments)
+- [SECURITY RULES](#security-rules)
+  - [Rule 42: Input Sanitization](#rule-42-input-sanitization)
+  - [Rule 43: No Sensitive Data in Code](#rule-43-no-sensitive-data-in-code)
+  - [Rule 44: HTTPS Only](#rule-44-https-only)
+
+### Database & UI/UX
+- [DATABASE RULES](#database-rules)
+  - [Rule 45: Follow Database Schema](#rule-45-follow-database-schema)
+  - [Rule 46: Use RLS Policies](#rule-46-use-rls-policies)
+  - [Rule 47: Handle Database Errors](#rule-47-handle-database-errors)
+- [UI/UX RULES](#uiux-rules)
+  - [Rule 48: Loading States](#rule-48-loading-states)
+  - [Rule 49: Error Messages](#rule-49-error-messages)
+  - [Rule 50: Success Feedback](#rule-50-success-feedback)
+  - [Rule 51: Empty States](#rule-51-empty-states)
+  - [Rule 52: Form Validation](#rule-52-form-validation)
+
+### Performance & Theming
+- [PERFORMANCE RULES](#performance-rules)
+  - [Rule 53: Image Optimization](#rule-53-image-optimization)
+  - [Rule 54: Code Splitting](#rule-54-code-splitting)
+  - [Rule 55: Efficient Queries](#rule-55-efficient-queries)
+- [THEME SYSTEM RULES](#theme-system-rules)
+  - [Rule 56: Theme Application](#rule-56-theme-application)
+  - [Rule 57: Color Contrast Validation](#rule-57-color-contrast-validation)
+
+### Layout Builder & Blocks
+- [LAYOUT BUILDER RULES](#layout-builder-rules)
+  - [Rule 58: Block System](#rule-58-block-system)
+  - [Rule 59: Drag-Drop Implementation](#rule-59-drag-drop-implementation)
+  - [Rule 60: Layout Persistence](#rule-60-layout-persistence)
+- [BLOCK COMPONENT RULES](#block-component-rules)
+  - [Rule 61: Block Template Structure](#rule-61-block-template-structure)
+  - [Rule 62: Block Reusability](#rule-62-block-reusability)
+
+### Public Page & Error Handling
+- [PUBLIC PAGE RULES](#public-page-rules)
+  - [Rule 63: Dynamic Rendering](#rule-63-dynamic-rendering)
+  - [Rule 64: Theme Application on Load](#rule-64-theme-application-on-load)
+  - [Rule 65: Data Loading Strategy](#rule-65-data-loading-strategy)
+- [ERROR HANDLING RULES](#error-handling-rules)
+  - [Rule 66: Comprehensive Error Handling](#rule-66-comprehensive-error-handling)
+  - [Rule 67: Error Logging](#rule-67-error-logging)
+
+### Code Style & Final Steps
+- [CODE STYLE RULES](#code-style-rules)
+  - [Rule 68: Consistent Formatting](#rule-68-consistent-formatting)
+  - [Rule 69: Variable Naming](#rule-69-variable-naming)
+  - [Rule 70: Function Length](#rule-70-function-length)
+- [FINAL CHECKLIST RULES](#final-checklist-rules)
+  - [Rule 71: Pre-Completion Checklist](#rule-71-pre-completion-checklist)
+  - [Rule 72: Post-Completion Actions](#rule-72-post-completion-actions)
+
+### Communication & Best Practices
+- [COMMUNICATION RULES](#communication-rules)
+  - [Rule 73: Clear Communication](#rule-73-clear-communication)
+  - [Rule 74: Progress Updates](#rule-74-progress-updates)
+- [EXCEPTION HANDLING](#exception-handling)
+  - [Rule 75: When to Ask for Help](#rule-75-when-to-ask-for-help)
+  - [Rule 76: Never Assume](#rule-76-never-assume)
+- [ADDITIONAL BEST PRACTICES](#additional-best-practices)
+  - [Rule 77: Code Reusability](#rule-77-code-reusability)
+  - [Rule 78: Maintainability](#rule-78-maintainability)
+  - [Rule 79: Scalability](#rule-79-scalability)
+  - [Rule 80: Future-Proofing](#rule-80-future-proofing)
+
+---
+
+## WORKFLOW RULES (Pre-Implementation)
+
+### Rule 1: Always Read All Documentation First
+**CRITICAL:** Before starting ANY task, you MUST read ALL documentation files in `docs/` folder:
+- `docs/analysis/analysis-req.md` - Requirements analysis
+- `docs/analysis/analysis-tech.md` - Technology stack details
+- `docs/analysis/analysis-db.md` - Database schema and relationships
+- `docs/implement/sprint-plan.md` - Sprint planning
+- `docs/implement/task-breakdown.md` - Detailed task breakdown
+
+**Action:** Use `read_file` tool to read these files before implementing any task.
+
+### Rule 2: Task Reference Required
+**CRITICAL:** Always reference the specific task from `docs/implement/task-breakdown.md` before implementation. Identify:
+- Epic number and name
+- Story number and name
+- Task ID (e.g., Task 1.1.1)
+- All sub-tasks listed
+- Acceptance criteria
+- Files to create/modify
+- Dependencies
+
+### Rule 3: Understand Task Context
+Before coding, ensure you understand:
+- What the task is trying to achieve
+- How it fits into the larger epic/story
+- What dependencies exist
+- What the acceptance criteria are
+- What files need to be created or modified
+
+### Rule 4: Check Dependencies
+**MANDATORY:** Before starting a task, verify all dependencies are completed:
+- Check if prerequisite tasks are done
+- Verify database setup if needed
+- Confirm required libraries are installed
+- Ensure shared modules exist
+
+### Rule 4.5: Update Task Status in task-breakdown.md
+**MANDATORY:** Always update task status in `docs/implement/task-breakdown.md`:
+
+**When starting a task:**
+1. Add status field after task header: `**Status:** In Progress`
+2. Keep all sub-task checkboxes as `- [ ]` (unchecked)
+
+**During implementation:**
+- Update sub-task checkboxes to `- [x]` as you complete each one
+- Update acceptance criteria checkboxes to `- [x]` when tested and verified
+
+**When completing a task:**
+1. Mark ALL sub-tasks as `- [x]` (checked)
+2. Mark ALL acceptance criteria as `- [x]` (checked)
+3. Update status: `**Status:** Completed`
+4. Add completion date: `**Completed:** YYYY-MM-DD HH:MM:SS`
+
+**When task has errors:**
+1. Update status: `**Status:** Error`
+2. Add error description: `**Error:** [brief description]`
+3. Mark completed sub-tasks as `- [x]`
+4. Keep incomplete sub-tasks as `- [ ]`
+
+**When task is blocked:**
+1. Update status: `**Status:** Blocked`
+2. Add blocker description: `**Blocker:** [reason]`
+3. Keep current checkbox states
+
+**Format example:**
+```markdown
+#### Task 1.1.1: Mock TikTok Auth Implementation
+**Estimate:** 4 hours  
+**Complexity:** Medium  
+**Dependencies:** None
+**Status:** Completed
+**Completed:** 2025-12-08 14:30:00
+
+**Sub-tasks:**
+- [x] Tạo file `shared/tiktok-auth.js`
+- [x] Implement `login()` function với mock data
+- [x] Implement `getChannel()` function
+- [x] Implement `logout()` function
+- [x] Lưu session vào localStorage
+- [x] Test auth flow
+
+**Acceptance Criteria:**
+- [x] User click "Login with TikTok" → redirect đến admin
+- [x] Channel info được lưu trong localStorage
+- [x] Session persist sau khi refresh page
+```
+
+**Status Values:**
+- `In Progress` - Task đang được thực hiện
+- `Completed` - Task đã hoàn thành và tested
+- `Error` - Task gặp lỗi, cần fix
+- `Blocked` - Task bị chặn bởi dependency hoặc issue khác
+- `Pending` - Task chưa bắt đầu (default)
+
+**Action:** Use `search_replace` tool to update task-breakdown.md after each significant progress or completion.
+
+---
+
+## IMPLEMENTATION RULES
+
+### Rule 5: Follow Task Breakdown Exactly
+Implement tasks exactly as specified in `task-breakdown.md`:
+- Complete ALL sub-tasks listed
+- Follow the exact file structure specified
+- Use the exact function/class names if provided
+- Meet ALL acceptance criteria
+
+### Rule 6: One Task at a Time
+**CRITICAL:** Complete ONE task fully before moving to the next:
+- Finish all sub-tasks
+- Verify acceptance criteria
+- Check for errors
+- Then STOP and ask user if they want to continue
+
+### Rule 7: Stop After Each Task
+After completing a task:
+1. Verify all sub-tasks are done
+2. Check acceptance criteria are met
+3. Run lint/type checks
+4. **STOP and ask:** "Task [ID] completed. Do you want to continue with the next task, add something, or fix issues?"
+
+### Rule 8: Ask Before Continuing
+**NEVER** automatically continue to the next task. Always ask the user:
+- Continue with next task?
+- Add features to current task?
+- Fix bugs/issues?
+- Review code?
+
+### Rule 9: File Structure Compliance
+Follow the exact file structure from `analysis-tech.md`:
+```
+src/
+├── shared/          # Shared utilities
+├── admin/           # Admin panel
+│   ├── components/
+│   └── styles/
+├── bio/             # Public bio page
+│   ├── components/
+│   └── styles/
+└── assets/
+```
+
+### Rule 10: Naming Conventions
+- **Files:** kebab-case (e.g., `category-form.js`, `layout-builder.css`)
+- **Functions:** camelCase (e.g., `addCategory()`, `getProducts()`)
+- **Classes:** PascalCase (e.g., `ThemeManager`, `LayoutBuilder`)
+- **Constants:** UPPER_SNAKE_CASE (e.g., `MAX_FILE_SIZE`, `DEFAULT_THEME`)
+- **CSS Classes:** kebab-case (e.g., `.product-grid`, `.category-item`)
+
+### Rule 11: Code Organization
+- One function per file for utilities
+- Group related functions in modules
+- Use ES6 modules (`import`/`export`)
+- Keep functions small and focused
+- Add JSDoc comments for all functions
+
+### Rule 12: Error Handling
+**MANDATORY:** Always implement error handling:
+- Try-catch blocks for async operations
+- User-friendly error messages
+- Console logging for debugging
+- Graceful degradation
+- Never let errors crash the app
+
+### Rule 13: Input Validation
+**MANDATORY:** Validate ALL user inputs:
+- Required fields
+- Data types
+- Format validation (URLs, emails, etc.)
+- Length limits
+- File types and sizes
+- Show clear error messages
+
+### Rule 14: Database Operations
+When working with Supabase:
+- Use the storage.js abstraction layer
+- Handle errors gracefully
+- Use transactions for multiple operations
+- Respect foreign key constraints
+- Handle cascade deletes properly
+- Use proper indexes for queries
+
+### Rule 15: CSS Variables for Theming
+**MANDATORY:** Use CSS variables for all theme colors:
+```css
+:root {
+  --color-primary: #FF6B9D;
+  --color-secondary: #FFB5D8;
+  --color-background: #FFF5F9;
+  --color-text: #333333;
+  --color-accent: #FFD166;
+}
+```
+Update variables dynamically via JavaScript, never inline styles.
+
+### Rule 16: Responsive Design Priority
+**MANDATORY:** Mobile-first approach:
+- Design for 375px first
+- Then scale up to 640px, 1024px
+- Use CSS Grid and Flexbox
+- Touch-friendly buttons (≥48x48px)
+- Minimum spacing (≥16px)
+
+### Rule 17: Accessibility (WCAG 2.1 AA)
+**MANDATORY:** Ensure accessibility:
+- Color contrast ≥4.5:1 for text
+- Keyboard navigation support
+- ARIA labels where needed
+- Semantic HTML
+- Alt text for images
+- Focus indicators visible
+
+### Rule 18: Performance Requirements
+**MANDATORY:** Meet performance targets:
+- Page load < 2s on 3G
+- Lighthouse score ≥ 90
+- Lazy load images
+- Optimize images (WebP)
+- Minimize JavaScript bundle
+- Use efficient queries
+
+### Rule 19: No Framework Dependencies
+**CRITICAL:** Use Vanilla JavaScript only:
+- NO React, Vue, Angular
+- NO jQuery
+- Use native DOM APIs
+- Use ES6+ features
+- Use sortablejs for drag-drop only
+
+### Rule 20: Supabase Integration
+When using Supabase:
+- Use `@supabase/supabase-js` v2.38.0+
+- Create client in `shared/storage.js`
+- Use RLS policies
+- Handle authentication properly
+- Use Storage buckets for images
+- Follow database schema from `analysis-db.md`
+
+---
+
+## CODE QUALITY RULES
+
+### Rule 21: Code Review Before Completion
+Before marking a task complete:
+- Review code for clarity
+- Check for code smells
+- Verify naming conventions
+- Ensure proper error handling
+- Check for security issues
+
+### Rule 22: Lint and Type Checking
+**MANDATORY:** Before stopping after a task:
+1. Run `read_lints` tool on all modified files
+2. Fix ALL linting errors
+3. Check for TypeScript errors if applicable
+4. Verify no console errors
+5. Only then mark task as complete
+
+### Rule 23: No Console.log in Production
+- Use console.log only for debugging
+- Remove or comment out before completion
+- Use proper error logging if needed
+- Never log sensitive data
+
+### Rule 24: Comment Complex Logic
+Add comments for:
+- Complex algorithms
+- Business logic
+- Workarounds
+- Non-obvious code
+- TODO items with context
+
+### Rule 25: DRY Principle
+- Don't repeat code
+- Extract common functionality
+- Create reusable utilities
+- Use shared modules
+- Avoid code duplication
+
+### Rule 26: Single Responsibility
+Each function/class should:
+- Do one thing well
+- Have a clear purpose
+- Be easy to test
+- Be easy to understand
+- Not mix concerns
+
+---
+
+## TESTING RULES
+
+### Rule 27: Test Acceptance Criteria
+**MANDATORY:** Verify ALL acceptance criteria:
+- Test each criterion individually
+- Document test results
+- Fix any failures before completion
+- Re-test after fixes
+
+### Rule 28: Manual Testing Required
+Before completion, manually test:
+- Happy path scenarios
+- Error scenarios
+- Edge cases
+- Different browsers
+- Mobile devices (375px, 640px)
+
+### Rule 29: Cross-Browser Testing
+Test in:
+- Chrome (latest 2 versions)
+- Firefox (latest 2 versions)
+- Safari (latest 2 versions)
+- Edge (latest 2 versions)
+
+### Rule 30: Mobile Testing Priority
+**CRITICAL:** Test on mobile first:
+- 375px viewport (iPhone SE)
+- 640px viewport (iPad mini)
+- Touch interactions
+- Swipe gestures
+- Button sizes
+
+---
+
+## LOGGING RULES
+
+### Rule 31: Create Log File After Each Task
+**MANDATORY:** After completing a task, create a log file in `logs/` folder:
+- Format: `logs_<task-id>_<timestamp>.md`
+- Example: `logs_1.1.1_2025-12-08_14-30-00.md`
+- Timestamp format: `YYYY-MM-DD_HH-MM-SS`
+
+### Rule 32: Log File Content
+Each log file must include:
+- Task ID and name
+- Date and time
+- Files created
+- Files modified
+- Functions/classes added
+- Issues encountered
+- Solutions applied
+- Testing results
+- Next steps
+
+### Rule 33: Log File for Fixes
+For bug fixes or additions:
+- Format: `logs_fix_<short-description>.md`
+- Example: `logs_fix_image-upload-error.md`
+- Or: `logs_add_category-search.md`
+
+### Rule 34: Log File Structure
+```markdown
+# Task Log: [Task ID] - [Task Name]
+
+**Date:** YYYY-MM-DD HH:MM:SS
+**Status:** Completed / In Progress / Blocked
+
+## Files Created
+- [list files]
+
+## Files Modified
+- [list files]
+
+## Implementation Details
+[describe what was done]
+
+## Issues & Solutions
+[describe any issues and how they were resolved]
+
+## Testing
+[describe testing performed]
+
+## Next Steps
+[what comes next]
+```
+
+### Rule 35: Create Logs Folder if Missing
+If `logs/` folder doesn't exist, create it before writing logs.
+
+---
+
+## GIT WORKFLOW RULES
+
+### Rule 36: Git Commit Format
+**MANDATORY:** When user requests commit, use this format:
+```
+[type]: [short description]
+
+[optional longer description]
+
+- [bullet point of changes]
+- [another change]
+```
+
+**Types:**
+- `feat`: New feature
+- `fix`: Bug fix
+- `docs`: Documentation
+- `style`: Code style changes
+- `refactor`: Code refactoring
+- `test`: Tests
+- `chore`: Maintenance
+
+**Example:**
+```
+feat: implement category CRUD operations
+
+- Add category form with validation
+- Implement database operations
+- Add category list display
+- Add edit and delete functionality
+```
+
+### Rule 37: No Vietnamese in Commits
+**CRITICAL:** Commit messages must be in English only, no Vietnamese.
+
+### Rule 38: Commit Only When Requested
+Never commit automatically. Only commit when user explicitly requests it.
+
+### Rule 39: Meaningful Commit Messages
+- Be specific about what changed
+- Use imperative mood
+- Keep first line under 50 characters
+- Add details in body if needed
+
+---
+
+## DOCUMENTATION RULES
+
+### Rule 40: Update Documentation
+When creating new features:
+- Update relevant analysis files if needed
+- Add JSDoc comments
+- Update README if structure changes
+- Document API changes
+- Note breaking changes
+
+### Rule 41: JSDoc Comments
+Add JSDoc for all functions:
+```javascript
+/**
+ * Adds a new category to the database
+ * @param {Object} categoryData - Category data
+ * @param {string} categoryData.name - Category name (required)
+ * @param {string} [categoryData.description] - Category description
+ * @returns {Promise<Object>} Created category object
+ * @throws {Error} If validation fails or database error
+ */
+async function addCategory(categoryData) {
+  // implementation
+}
+```
+
+---
+
+## SECURITY RULES
+
+### Rule 42: Input Sanitization
+**MANDATORY:** Sanitize all user inputs:
+- Prevent XSS attacks
+- Validate URLs
+- Sanitize file names
+- Escape HTML in user content
+- Validate file types
+
+### Rule 43: No Sensitive Data in Code
+- Never hardcode API keys
+- Use environment variables
+- Don't commit secrets
+- Use Supabase RLS policies
+- Validate user permissions
+
+### Rule 44: HTTPS Only
+- All API calls over HTTPS
+- No mixed content
+- Secure cookies if used
+- Validate SSL certificates
+
+---
+
+## DATABASE RULES
+
+### Rule 45: Follow Database Schema
+**MANDATORY:** Use exact schema from `analysis-db.md`:
+- Table names match exactly
+- Column names match exactly
+- Data types match exactly
+- Foreign keys properly set
+- Indexes as specified
+
+### Rule 46: Use RLS Policies
+- Enable RLS on all tables
+- Create proper policies
+- Test policies work correctly
+- Document policy logic
+
+### Rule 47: Handle Database Errors
+- Catch and handle all DB errors
+- Provide user-friendly messages
+- Log errors for debugging
+- Handle connection issues
+- Handle constraint violations
+
+---
+
+## UI/UX RULES
+
+### Rule 48: Loading States
+**MANDATORY:** Show loading states for:
+- API calls
+- Image uploads
+- Form submissions
+- Data fetching
+- Use spinners or skeletons
+
+### Rule 49: Error Messages
+- User-friendly error messages
+- No technical jargon
+- Suggest solutions
+- Clear and actionable
+- Visible and accessible
+
+### Rule 50: Success Feedback
+- Show success messages
+- Confirm actions completed
+- Visual feedback (toasts, modals)
+- Update UI immediately
+- Clear form after success
+
+### Rule 51: Empty States
+- Show helpful empty states
+- Provide actions to fill empty state
+- Use illustrations or icons
+- Clear messaging
+- Guide user next steps
+
+### Rule 52: Form Validation
+- Validate on blur
+- Show errors inline
+- Disable submit until valid
+- Clear errors on correction
+- Highlight required fields
+
+---
+
+## PERFORMANCE RULES
+
+### Rule 53: Image Optimization
+**MANDATORY:**
+- Use WebP format with PNG fallback
+- Lazy load all images
+- Provide proper alt text
+- Optimize image sizes
+- Use appropriate dimensions
+
+### Rule 54: Code Splitting
+- Load only needed code
+- Use dynamic imports if needed
+- Minimize bundle size
+- Avoid unnecessary dependencies
+- Tree-shake unused code
+
+### Rule 55: Efficient Queries
+- Use proper indexes
+- Limit result sets
+- Use pagination if needed
+- Avoid N+1 queries
+- Cache when appropriate
+
+---
+
+## THEME SYSTEM RULES
+
+### Rule 56: Theme Application
+- Always use CSS variables
+- Update variables dynamically
+- Validate color contrast
+- Save themes to database
+- Load themes on page load
+
+### Rule 57: Color Contrast Validation
+**MANDATORY:** Validate WCAG AA:
+- Text vs background ≥4.5:1
+- UI elements ≥3:1
+- Show warnings if fails
+- Suggest fixes
+- Prevent saving invalid themes
+
+---
+
+## LAYOUT BUILDER RULES
+
+### Rule 58: Block System
+- Each block is independent
+- Blocks have settings
+- Blocks can be reordered
+- Blocks can be duplicated
+- Blocks can be deleted
+
+### Rule 59: Drag-Drop Implementation
+- Use sortablejs library
+- Smooth animations
+- Visual feedback
+- Handle edge cases
+- Save order to database
+
+### Rule 60: Layout Persistence
+- Auto-save every 30 seconds
+- Save draft on manual save
+- Publish creates published version
+- Track unsaved changes
+- Show indicators
+
+---
+
+## BLOCK COMPONENT RULES
+
+### Rule 61: Block Template Structure
+Each block must have:
+- Template function (returns HTML)
+- Settings form
+- Render function
+- Default settings
+- Validation
+
+### Rule 62: Block Reusability
+- Blocks work in builder and public page
+- Same code for both contexts
+- Settings apply correctly
+- Responsive in both contexts
+- Performance optimized
+
+---
+
+## PUBLIC PAGE RULES
+
+### Rule 63: Dynamic Rendering
+- Parse layout config
+- Render blocks in order
+- Apply block settings
+- Handle missing data
+- Graceful degradation
+
+### Rule 64: Theme Application on Load
+- Load theme from database
+- Apply CSS variables
+- Fallback to default if missing
+- Handle theme errors
+- Update immediately
+
+### Rule 65: Data Loading Strategy
+- Load all data in parallel
+- Show loading states
+- Handle errors gracefully
+- Cache when possible
+- Optimize queries
+
+---
+
+## ERROR HANDLING RULES
+
+### Rule 66: Comprehensive Error Handling
+- Try-catch for async operations
+- Handle network errors
+- Handle validation errors
+- Handle database errors
+- Handle user errors
+
+### Rule 67: Error Logging
+- Log errors for debugging
+- Include context
+- Don't expose sensitive info
+- User-friendly messages
+- Track error patterns
+
+---
+
+## CODE STYLE RULES
+
+### Rule 68: Consistent Formatting
+- Use 2 spaces for indentation
+- Use semicolons
+- Use single quotes for strings
+- Trailing commas in objects/arrays
+- Consistent spacing
+
+### Rule 69: Variable Naming
+- Descriptive names
+- No abbreviations
+- Boolean: `is`, `has`, `should`
+- Functions: verb + noun
+- Classes: Noun
+
+### Rule 70: Function Length
+- Keep functions under 50 lines
+- Break down complex functions
+- One responsibility per function
+- Extract helpers
+- Clear flow
+
+---
+
+## FINAL CHECKLIST RULES
+
+### Rule 71: Pre-Completion Checklist
+Before marking task complete:
+- [ ] All sub-tasks done
+- [ ] Acceptance criteria met
+- [ ] Lint errors fixed
+- [ ] Type errors fixed
+- [ ] Manual testing done
+- [ ] Error handling added
+- [ ] Documentation updated
+- [ ] Log file created
+- [ ] Code reviewed
+- [ ] User notified
+
+### Rule 72: Post-Completion Actions
+After completing task:
+1. Update task status in task-breakdown.md (Rule 4.5)
+2. Mark all sub-tasks and acceptance criteria as completed
+3. Create log file
+4. Run lint checks
+5. Fix all errors
+6. Ask user for next step
+7. Wait for user direction
+
+---
+
+## COMMUNICATION RULES
+
+### Rule 73: Clear Communication
+- Explain what you're doing
+- Ask for clarification if needed
+- Report issues immediately
+- Suggest solutions
+- Be concise but complete
+
+### Rule 74: Progress Updates
+- Update user on progress
+- Report blockers immediately
+- Estimate time if asked
+- Explain complex decisions
+- Show what's completed
+
+---
+
+## EXCEPTION HANDLING
+
+### Rule 75: When to Ask for Help
+Ask user when:
+- Requirements are unclear
+- Multiple valid approaches exist
+- Dependencies are missing
+- Blockers encountered
+- Scope changes needed
+
+### Rule 76: Never Assume
+- Don't assume user wants next task
+- Don't assume implementation approach
+- Don't assume requirements
+- Always ask if unsure
+- Verify understanding
+
+---
+
+## ADDITIONAL BEST PRACTICES
+
+### Rule 77: Code Reusability
+- Create shared utilities
+- Reuse components
+- Avoid duplication
+- Extract common patterns
+- Build library of helpers
+
+### Rule 78: Maintainability
+- Write readable code
+- Add comments where needed
+- Follow conventions
+- Keep structure clear
+- Make it easy to modify
+
+### Rule 79: Scalability
+- Design for growth
+- Use efficient algorithms
+- Optimize queries
+- Plan for more data
+- Consider performance
+
+### Rule 80: Future-Proofing
+- Use modern JavaScript
+- Follow standards
+- Avoid deprecated APIs
+- Keep dependencies updated
+- Document decisions
+
+---
+
+## REMEMBER
+
+**CRITICAL WORKFLOW:**
+1. Read ALL documentation first
+2. Understand task from task-breakdown.md
+3. Check dependencies
+4. Update task status to "In Progress" in task-breakdown.md
+5. Implement task completely
+6. Update sub-task checkboxes as you complete them
+7. Test acceptance criteria
+8. Update acceptance criteria checkboxes when verified
+9. Update task status to "Completed" in task-breakdown.md
+10. Fix lint/type errors
+11. Create log file
+12. STOP and ask user
+13. Wait for direction
+14. Only then continue
+
+**NEVER:**
+- Skip reading documentation
+- Continue to next task automatically
+- Commit without user request
+- Ignore lint errors
+- Skip testing
+- Assume requirements
+
+---
+
+**End of Rules**

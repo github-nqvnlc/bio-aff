@@ -6,6 +6,59 @@
 
 ---
 
+## Mục Lục
+
+1. [Tóm Tắt Hành Động](#tóm-tắt-hành-động)
+   - [Tổng Quan Dự Án](#tổng-quan-dự-án)
+   - [Phân Bố Tính Năng](#phân-bố-tính-năng)
+   - [Phân Tách Cách Triển Khai](#phân-tách-cách-triển-khai)
+   - [Phân Bố Ưu Tiên (MVP)](#phân-bố-ưu-tiên-mvp)
+
+2. [Danh Sách Tính Năng Hoàn Chỉnh](#danh-sách-tính-năng-hoàn-chỉnh)
+   - [Chú Giải](#chú-giải)
+   - [Bảng Tính Năng](#bảng-tính-năng)
+
+3. [Tính Năng Theo Ưu Tiên (MVP Trước)](#tính-năng-theo-ưu-tiên-mvp-trước)
+   - [P0: Phải Có (MVP - Tuần 1-2) - 35 mục](#p0-phải-có-mvp---tuần-1-2---35-mục)
+   - [P1: Nên Có (Giai Đoạn 1 - Phát Triển Thêm) - 28 mục](#p1-nên-có-giai-đoạn-1---phát-triển-thêm---28-mục)
+   - [P2: Tốt Nếu Có (Giai Đoạn 2+) - 19 mục](#p2-tốt-nếu-có-giai-đoạn-2---19-mục)
+
+4. [Tính Năng Theo Vai Trò](#tính-năng-theo-vai-trò)
+   - [Tính Năng Bảng Điều Khiển Admin (48 mục)](#tính-năng-bảng-điều-khiển-admin-48-mục)
+   - [Tính Năng Trang Công Khai (34 mục)](#tính-năng-trang-công-khai-34-mục)
+
+5. [Tính Năng Theo Lớp Triển Khai](#tính-năng-theo-lớp-triển-khai)
+   - [Frontend (65 mục - 79%)](#frontend-65-mục---79)
+   - [Backend (12 mục - 15%)](#backend-12-mục---15)
+   - [Cơ Sở Dữ Liệu (5 mục - 6%)](#cơ-sở-dữ-liệu-5-mục---6)
+
+6. [Trình Tự Triển Khai (Được Đề Xuất)](#trình-tự-triển-khai-được-đề-xuất)
+   - [Giai Đoạn 1: Nền Tảng (Ngày 1-3)](#giai-đoạn-1-nền-tảng-ngày-1-3)
+   - [Giai Đoạn 2: Trình Tạo (Ngày 4-8)](#giai-đoạn-2-trình-tạo-ngày-4-8)
+   - [Giai Đoạn 3: Phát Triển Thêm & Tính Năng (Ngày 9-14)](#giai-đoạn-3-phát-triển-thêm--tính-năng-ngày-9-14)
+
+7. [Phân Tích Rủi Ro & Độ Phức Tạp](#phân-tích-rủi-ro--độ-phức-tạp)
+   - [Độ Phức Tạp Cao (Cần Chú Ý)](#độ-phức-tạp-cao-cần-chú-ý)
+   - [Rủi Ro Cao (Nhiều Phụ Thuộc)](#rủi-ro-cao-nhiều-phụ-thuộc)
+   - [Sự Phụ Thuộc](#sự-phụ-thuộc)
+
+8. [Yêu Cầu Lược Đồ Cơ Sở Dữ Liệu](#yêu-cầu-lược-đồ-cơ-sở-dữ-liệu)
+   - [Bảng Cần Thiết](#bảng-cần-thiết)
+   - [Mối Quan Hệ](#mối-quan-hệ)
+
+9. [Các Chỉ Số Thành Công Theo Tính Năng](#các-chỉ-số-thành-công-theo-tính-năng)
+
+10. [Ghi Chú](#ghi-chú)
+    - [Giả Định](#giả-định)
+    - [Nâng Cao Trong Tương Lai (Không có trong MVP)](#nâng-cao-trong-tương-lai-không-có-trong-mvp)
+
+11. [Phụ Lục: Danh Sách Kiểm Tra Tính Năng](#phụ-lục-danh-sách-kiểm-tra-tính-năng)
+    - [Bảng Điều Khiển Admin](#bảng-điều-khiển-admin)
+    - [Trang Công Khai](#trang-công-khai)
+    - [Thử Nghiệm](#thử-nghiệm)
+
+---
+
 ## Tóm Tắt Hành Động
 
 ### Tổng Quan Dự Án
