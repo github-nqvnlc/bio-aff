@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Test Supabase Connection - Bio Affiliate</title>
+  <style>
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      max-width: 800px;
+      margin: 50px auto;
+      padding: 20px;
+      line-height: 1.6;
+    }
+    .status {
+      padding: 20px;
+      border-radius: 8px;
+      margin: 20px 0;
+    }
+    .success {
+      background: #d1fae5;
+      color: #065f46;
+      border: 1px solid #10b981;
+    }
+    .error {
+      background: #fee2e2;
+      color: #991b1b;
+      border: 1px solid #ef4444;
+    }
+    .info {
+      background: #dbeafe;
+      color: #1e40af;
+      border: 1px solid #3b82f6;
+    }
+    .loading {
+      background: #fef3c7;
+      color: #92400e;
+      border: 1px solid #f59e0b;
+    }
+    button {
+      background: #FF6B9D;
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 16px;
+      margin: 10px 5px;
+    }
+    button:hover {
+      background: #ff4d8a;
+    }
+    code {
+      background: #f3f4f6;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-family: 'Monaco', 'Courier New', monospace;
+    }
+    pre {
+      background: #1f2937;
+      color: #f9fafb;
+      padding: 15px;
+      border-radius: 6px;
+      overflow-x: auto;
+    }
+  </style>
+</head>
+<body>
+  <h1>🔌 Supabase Connection Test</h1>
+  
+  <div id="status" class="status info">
+    <p><strong>Ready to test connection</strong></p>
+    <p>Click the button below to test your Supabase connection.</p>
+  </div>
+
+  <div>
+    <button onclick="runTest()">Test Connection</button>
+    <button onclick="checkEnv()">Check Environment Variables</button>
+  </div>
+
+  <div id="result"></div>
+
+  <div class="status info" style="margin-top: 30px;">
+    <h3>📝 Setup Instructions:</h3>
+    <ol>
+      <li>Create a Supabase project at <a href="https://supabase.com" target="_blank">supabase.com</a></li>
+      <li>Go to Project Settings → API</li>
+      <li>Copy <code>Project URL</code> and <code>anon/public key</code></li>
+      <li>Create <code>.env</code> file in project root with:
+        <pre>VITE_SUPABASE_URL=https://xxxxx.supabase.co
+VITE_SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...</pre>
+      </li>
+      <li><strong>⚠️ IMPORTANT:</strong> Restart dev server: <code>npm run dev</code></li>
+      <li>Refresh this page and click "Test Connection"</li>
+    </ol>
+    
+    <div class="status error" style="margin-top: 20px;">
+      <h4>⚠️ Environment Variables Not Loading?</h4>
+      <p><strong>Vite chỉ load .env khi khởi động!</strong></p>
+      <ol>
+        <li>Stop dev server: Nhấn <code>Ctrl + C</code> trong terminal</li>
+        <li>Restart: <code>npm run dev</code></li>
+        <li>Refresh browser và test lại</li>
+      </ol>
+    </div>
+  </div>
+
+  <script type="module">
+    import { testSupabaseConnection } from './shared/test-supabase-connection.js';
+
+    window.runTest = async function() {
+      const statusDiv = document.getElementById('status');
+      const resultDiv = document.getElementById('result');
+      
+      statusDiv.className = 'status loading';
+      statusDiv.innerHTML = '<p><strong>Testing connection...</strong></p>';
+      resultDiv.innerHTML = '';
+
+      const result = await testSupabaseConnection();
+
+      if (result.success) {
+        statusDiv.className = 'status success';
+        statusDiv.innerHTML = `<p><strong>✅ ${result.message}</strong></p>`;
+        resultDiv.innerHTML = `
+          <div class="status success">
+            <h3>Connection Details:</h3>
+            <pre>${JSON.stringify(result.details, null, 2)}</pre>
+          </div>
+        `;
+      } else {
+        statusDiv.className = 'status error';
+        statusDiv.innerHTML = `<p><strong>❌ ${result.message}</strong></p>`;
+        resultDiv.innerHTML = `
+          <div class="status error">
+            <h3>Error Details:</h3>
+            <pre>${JSON.stringify(result, null, 2)}</pre>
+            <p><strong>Solution:</strong> ${result.message || 'Check your .env file and Supabase credentials'}</p>
+          </div>
+        `;
+      }
+    };
+
+    window.checkEnv = function() {
+      const url = import.meta.env.VITE_SUPABASE_URL;
+      const key = import.meta.env.VITE_SUPABASE_ANON_KEY;
+      
+      const resultDiv = document.getElementById('result');
+      resultDiv.innerHTML = `
+        <div class="status ${url && key ? 'success' : 'error'}">
+          <h3>Environment Variables:</h3>
+          <ul>
+            <li><strong>VITE_SUPABASE_URL:</strong> ${url ? '✅ Set' : '❌ Missing'}</li>
+            <li><strong>VITE_SUPABASE_ANON_KEY:</strong> ${key ? '✅ Set' : '❌ Missing'}</li>
+          </ul>
+          ${url ? `<p><strong>URL:</strong> <code>${url}</code></p>` : ''}
+          ${key ? `<p><strong>Key (first 20 chars):</strong> <code>${key.substring(0, 20)}...</code></p>` : ''}
+        </div>
+      `;
+    };
+
+    // Auto-check on load
+    checkEnv();
+  </script>
+</body>
+</html>
+

@@ -67,6 +67,7 @@ This is a TikTok Bio Affiliate project with complete theme customization and dra
 - [DOCUMENTATION RULES](#documentation-rules)
   - [Rule 40: Update Documentation](#rule-40-update-documentation)
   - [Rule 41: JSDoc Comments](#rule-41-jsdoc-comments)
+  - [Rule 41.5: Guide File Naming Convention](#rule-415-guide-file-naming-convention)
 - [SECURITY RULES](#security-rules)
   - [Rule 42: Input Sanitization](#rule-42-input-sanitization)
   - [Rule 43: No Sensitive Data in Code](#rule-43-no-sensitive-data-in-code)
@@ -587,6 +588,34 @@ async function addCategory(categoryData) {
   // implementation
 }
 ```
+
+### Rule 41.5: Guide File Naming Convention
+**MANDATORY:** All guide files (setup guides, troubleshooting guides, migration guides, etc.) must follow this naming convention:
+
+**Format:** `<task-id>-<guide-name>.md`
+
+**Examples:**
+- `docs/implement/0.1.3-supabase-setup.md` - Supabase setup guide for Task 0.1.3
+- `docs/implement/0.1.3-troubleshooting.md` - Troubleshooting guide for Task 0.1.3
+- `docs/database/0.1.4-database-setup.md` - Database setup guide for Task 0.1.4
+- `docs/database/0.1.4-migration-guide.md` - Migration guide for Task 0.1.4
+- `docs/database/0.1.5-storage-setup.md` - Storage setup guide for Task 0.1.5
+
+**Rules:**
+- Task ID format: `X.Y.Z` (Epic.Story.Task)
+- Guide name: kebab-case, descriptive
+- Location: Place in appropriate folder (`docs/implement/`, `docs/database/`, etc.)
+- Update all references when renaming guide files
+- Include task ID in file header: `**Task:** X.Y.Z - [Task Name]`
+
+**When creating guide files:**
+1. Use task ID from `task-breakdown.md`
+2. Use descriptive kebab-case name
+3. Place in appropriate documentation folder
+4. Update references in `task-breakdown.md` and other related files
+5. Delete old guide files if renaming
+
+**Action:** Always use this naming convention when creating or renaming guide files.
 
 ---
 

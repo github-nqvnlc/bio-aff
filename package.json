@@ -1,0 +1,29 @@
+{
+  "name": "bio-affiliate",
+  "version": "1.0.0",
+  "description": "TikTok Bio Affiliate với Tùy Chỉnh Chủ Đề & Bố Cục",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.38.0",
+    "sortablejs": "^1.15.0"
+  },
+  "devDependencies": {
+    "vite": "^5.0.0"
+  },
+  "keywords": [
+    "tiktok",
+    "affiliate",
+    "bio",
+    "link-in-bio",
+    "theme-customization",
+    "layout-builder"
+  ],
+  "author": "",
+  "license": "MIT"
+}
+
