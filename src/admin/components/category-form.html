@@ -1,0 +1,36 @@
+<form id="category-form" class="category-form" novalidate>
+  <div class="form-field">
+    <label for="category-name">Category name<span aria-hidden="true">*</span></label>
+    <input
+      id="category-name"
+      name="name"
+      type="text"
+      required
+      minlength="2"
+      maxlength="80"
+      placeholder="e.g. Skincare, Tech Gadgets"
+    />
+    <p class="form-error" id="category-name-error" role="alert" aria-live="polite"></p>
+  </div>
+
+  <div class="form-field">
+    <label for="category-description">Description (optional)</label>
+    <textarea
+      id="category-description"
+      name="description"
+      rows="3"
+      maxlength="200"
+      placeholder="Short note about what goes into this category"
+    ></textarea>
+    <p class="form-error" id="category-description-error" role="alert" aria-live="polite"></p>
+  </div>
+
+  <div class="form-actions">
+    <button type="submit" class="form-button-primary">Save category</button>
+    <button type="reset" class="form-button-secondary">Reset</button>
+  </div>
+
+  <p class="form-hint" aria-live="polite" id="category-form-message"></p>
+</form>
+
+

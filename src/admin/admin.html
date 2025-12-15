@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bio Affiliate Admin</title>
+    <link rel="stylesheet" href="./admin.css" />
+  </head>
+  <body>
+    <div class="app-root">
+      <header class="app-header">
+        <h1 class="app-title">Bio Affiliate Admin</h1>
+        <p class="app-subtitle">Manage themes, layout, and products</p>
+        <div class="auth-actions">
+          <button class="auth-button" id="tiktok-login-button" type="button">
+            Login with TikTok (Mock)
+          </button>
+          <button class="auth-button auth-button-secondary" id="logout-button" type="button">
+            Logout
+          </button>
+        </div>
+      </header>
+
+      <main class="app-main">
+        <section class="panel panel-left">
+          <h2 class="panel-title">Navigation</h2>
+          <ul class="nav-list">
+            <li class="nav-item">Dashboard</li>
+            <li class="nav-item">Products</li>
+            <li class="nav-item">Themes</li>
+            <li class="nav-item">Layout Builder</li>
+          </ul>
+        </section>
+
+        <section class="panel panel-right">
+          <h2 class="panel-title">Dashboard</h2>
+
+          <section class="dashboard-card" aria-label="Channel overview">
+            <h3 class="dashboard-card-title">Channel overview</h3>
+            <p class="dashboard-card-description">
+              Current TikTok channel connected to this admin.
+            </p>
+            <div id="channel-info" class="channel-info-container" aria-live="polite"></div>
+          </section>
+
+          <section class="dashboard-card" aria-labelledby="category-section-title">
+            <div class="dashboard-card-header">
+              <div>
+                <h3 id="category-section-title" class="dashboard-card-title">Categories</h3>
+                <p class="dashboard-card-description">
+                  Group your products into clear, reusable categories.
+                </p>
+              </div>
+            </div>
+            <div id="category-form-root"></div>
+            <div id="category-list-root" class="category-list-root" aria-live="polite"></div>
+          </section>
+        </section>
+      </main>
+    </div>
+
+    <script type="module" src="./admin.js"></script>
+  </body>
+</html>
+
+

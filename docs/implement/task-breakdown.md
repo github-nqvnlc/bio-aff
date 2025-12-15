@@ -218,21 +218,23 @@
 #### Task 0.1.6: Frontend Structure Setup
 **Estimate:** 2 hours  
 **Complexity:** Low  
-**Dependencies:** Task 0.1.1
+**Dependencies:** Task 0.1.1  
+**Status:** Completed
+**Completed:** 2025-12-14 23:59:00
 
 **Sub-tasks:**
-- [ ] Tạo HTML structure (admin.html, bio.html)
-- [ ] Setup CSS variables system
-- [ ] Tạo shared modules structure
-- [ ] Setup module imports/exports
-- [ ] Create basic CSS files
-- [ ] Test file structure
+- [x] Tạo HTML structure (admin.html, bio.html)
+- [x] Setup CSS variables system
+- [x] Tạo shared modules structure
+- [x] Setup module imports/exports
+- [x] Create basic CSS files
+- [x] Test file structure
 
 **Acceptance Criteria:**
-- [ ] HTML files được tạo
-- [ ] CSS variables system setup
-- [ ] Module structure đúng
-- [ ] Files có thể import/export
+- [x] HTML files được tạo
+- [x] CSS variables system setup
+- [x] Module structure đúng
+- [x] Files có thể import/export
 
 **Files to Create:**
 - `src/admin/admin.html`
@@ -250,23 +252,118 @@
 #### Task 0.1.7: Environment Configuration
 **Estimate:** 1 hour  
 **Complexity:** Low  
-**Dependencies:** Task 0.1.3
+**Dependencies:** Task 0.1.3  
+**Status:** Completed  
+**Completed:** 2025-12-15 23:58:22
 
 **Sub-tasks:**
-- [ ] Copy `.env.example` to `.env`
-- [ ] Fill in Supabase credentials
-- [ ] Add TikTok OAuth credentials (nếu có)
-- [ ] Verify `.env` được ignore trong `.gitignore`
-- [ ] Document environment setup
+- [x] Copy `.env.example` to `.env`
+- [x] Fill in Supabase credentials
+- [x] Add TikTok OAuth credentials (nếu có)
+- [x] Verify `.env` được ignore trong `.gitignore`
+- [x] Document environment setup
 
 **Acceptance Criteria:**
-- [ ] `.env` file được tạo từ `.env.example`
-- [ ] Tất cả required variables được fill
-- [ ] `.env` không được commit
-- [ ] Environment setup được document
+- [x] `.env` file được tạo từ `.env.example`
+- [x] Tất cả required variables được fill
+- [x] `.env` không được commit
+- [x] Environment setup được document
 
 **Files to Create:**
 - `.env` (local, không commit)
+
+---
+
+## Epic 0.2: Core Auth (Email/Password)
+
+### Story 0.2.1: User Accounts & Admin Login
+**Story Points:** 5  
+**Priority:** P0  
+**Sprint:** Sprint 1
+
+#### Task 0.2.1: Auth Pages (Login & Register)
+**Estimate:** 3 hours  
+**Complexity:** Medium  
+**Dependencies:** Task 0.1.6
+**Status:** Completed  
+**Completed:** 2025-12-16 00:15:52
+
+**Sub-tasks:**
+- [x] Tạo `login.html` (email/password form)
+- [x] Tạo `register.html` (email/password/confirm form)
+- [x] Tạo `auth.css` (hoặc dùng chung style với admin, mobile-first)
+- [x] Thêm validation cơ bản (required, email format, password length)
+- [x] Hiển thị error message thân thiện
+
+**Acceptance Criteria:**
+- [x] User có thể mở trang login và register từ browser
+- [x] Form validate input cơ bản trước khi submit
+- [x] Error hiển thị rõ ràng, dễ hiểu
+- [x] Layout responsive ở 375px
+
+**Files to Create:**
+- `src/auth/login.html`
+- `src/auth/register.html`
+- `src/auth/auth.css` (optional nếu tách riêng)
+
+---
+
+#### Task 0.2.2: Supabase Email/Password Auth Integration
+**Estimate:** 4 hours  
+**Complexity:** Medium  
+**Dependencies:** Task 0.2.1, Task 0.1.3
+**Status:** Completed  
+**Completed:** 2025-12-16 00:34:03
+
+**Sub-tasks:**
+- [x] Tạo module `auth.js` để wrap Supabase Auth
+- [x] Implement `signUp(email, password)` bằng `supabase.auth.signUp`
+- [x] Implement `signIn(email, password)` bằng `supabase.auth.signInWithPassword`
+- [x] Implement `getCurrentSession()` bằng `supabase.auth.getSession`
+- [x] Implement `signOut()` bằng `supabase.auth.signOut`
+- [x] Handle error (email tồn tại, password sai, v.v.)
+
+**Acceptance Criteria:**
+- [x] User có thể đăng ký bằng email/password (Supabase Auth)
+- [x] User có thể đăng nhập bằng email/password và được redirect vào admin
+- [x] Session được giữ sau khi refresh (Supabase session) *(will be enforced in Task 0.2.3)*
+- [x] Đăng xuất hoạt động và redirect về login *(signOut implemented, wiring will be done in Task 0.2.3)*
+
+**Files to Create:**
+- `src/auth/auth.js`
+
+**Files to Modify:**
+- `src/auth/login.html`
+- `src/auth/register.html`
+- (optional) `src/shared/storage.js` hoặc tách `src/shared/supabase-client.js`
+
+---
+
+#### Task 0.2.3: Protect Admin Routes with Auth
+**Estimate:** 2 hours  
+**Complexity:** Low  
+**Dependencies:** Task 0.2.2, Task 0.1.6
+**Status:** Completed  
+**Completed:** 2025-12-16 01:15:38
+
+**Sub-tasks:**
+- [x] Check session trong `admin/admin.js` khi load
+- [x] Nếu không có session → redirect `src/auth/login.html`
+- [x] Thêm nút `Logout` trong `admin.html`
+- [x] Gọi `signOut()` khi click `Logout`
+- [x] Hiển thị trang 404 khi truy cập route không tồn tại, với nút quay về trang mặc định
+
+**Acceptance Criteria:**
+- [x] Không có session thì không truy cập được `admin/admin.html`
+- [x] Có session thì vào admin bình thường
+- [x] Logout xóa session và redirect về login
+- [x] Route không tồn tại hiển thị trang 404 với nút quay về trang mặc định
+
+**Files to Modify:**
+- `src/admin/admin.html`
+- `src/admin/admin.js`
+- `src/auth/auth.js`
+- `src/index.html`
 
 ---
 
@@ -280,20 +377,22 @@
 #### Task 1.1.1: Mock TikTok Auth Implementation
 **Estimate:** 4 hours  
 **Complexity:** Medium  
-**Dependencies:** None
+**Dependencies:** None  
+**Status:** Completed  
+**Completed:** 2025-12-16 00:07:15
 
 **Sub-tasks:**
-- [ ] Tạo file `shared/tiktok-auth.js`
-- [ ] Implement `login()` function với mock data
-- [ ] Implement `getChannel()` function
-- [ ] Implement `logout()` function
-- [ ] Lưu session vào localStorage
-- [ ] Test auth flow
+- [x] Tạo file `shared/tiktok-auth.js`
+- [x] Implement `login()` function với mock data
+- [x] Implement `getChannel()` function
+- [x] Implement `logout()` function
+- [x] Lưu session vào localStorage
+- [x] Test auth flow
 
 **Acceptance Criteria:**
-- [ ] User click "Login with TikTok" → redirect đến admin
-- [ ] Channel info được lưu trong localStorage
-- [ ] Session persist sau khi refresh page
+- [x] User click "Login with TikTok" → redirect đến admin
+- [x] Channel info được lưu trong localStorage
+- [x] Session persist sau khi refresh page
 
 **Files to Create:**
 - `src/shared/tiktok-auth.js`
@@ -308,17 +407,19 @@
 **Estimate:** 3 hours  
 **Complexity:** Low  
 **Dependencies:** Task 1.1.1
+**Status:** Completed  
+**Completed:** 2025-12-16 01:20:00
 
 **Sub-tasks:**
-- [ ] Tạo UI component hiển thị channel info
-- [ ] Hiển thị avatar, name, tiktok_id
-- [ ] Hiển thị followers count (nếu có)
-- [ ] Styling với CSS
+- [x] Tạo UI component hiển thị channel info
+- [x] Hiển thị avatar, name, tiktok_id
+- [x] Hiển thị followers count (nếu có)
+- [x] Styling với CSS
 
 **Acceptance Criteria:**
-- [ ] Channel info hiển thị đúng sau login
-- [ ] Avatar load đúng
-- [ ] UI responsive
+- [x] Channel info hiển thị đúng sau login
+- [x] Avatar load đúng
+- [x] UI responsive
 
 **Files to Create:**
 - `src/admin/components/channel-info.js`
@@ -330,18 +431,20 @@
 **Estimate:** 3 hours  
 **Complexity:** Medium  
 **Dependencies:** Task 1.1.1, Database setup
+**Status:** Completed  
+**Completed:** 2025-12-16 01:25:00
 
 **Sub-tasks:**
-- [ ] Tạo Supabase client
-- [ ] Implement `saveChannel()` function
-- [ ] Handle upsert (insert or update)
-- [ ] Error handling
-- [ ] Test database operations
+- [x] Tạo Supabase client
+- [x] Implement `saveChannel()` function
+- [x] Handle upsert (insert or update)
+- [x] Error handling
+- [x] Test database operations
 
 **Acceptance Criteria:**
-- [ ] Channel được lưu vào `channels` table
-- [ ] Duplicate tiktok_id được handle (upsert)
-- [ ] Error được handle gracefully
+- [x] Channel được lưu vào `channels` table
+- [x] Duplicate tiktok_id được handle (upsert)
+- [x] Error được handle gracefully
 
 **Files to Create:**
 - `src/shared/storage.js` (nếu chưa có)
@@ -363,17 +466,19 @@
 **Estimate:** 2 hours  
 **Complexity:** Low  
 **Dependencies:** None
+**Status:** Completed  
+**Completed:** 2025-12-16 01:35:00
 
 **Sub-tasks:**
-- [ ] Tạo form HTML với fields: name (required), description (optional)
-- [ ] Styling form với CSS
-- [ ] Form validation (client-side)
-- [ ] Submit handler
+- [x] Tạo form HTML với fields: name (required), description (optional)
+- [x] Styling form với CSS
+- [x] Form validation (client-side)
+- [x] Submit handler
 
 **Acceptance Criteria:**
-- [ ] Form hiển thị đúng
-- [ ] Validation hoạt động (name required)
-- [ ] Form reset sau submit
+- [x] Form hiển thị đúng
+- [x] Validation hoạt động (name required)
+- [x] Form reset sau submit
 
 **Files to Create:**
 - `src/admin/components/category-form.html`
@@ -386,17 +491,19 @@
 **Estimate:** 3 hours  
 **Complexity:** Low  
 **Dependencies:** Task 2.1.3
+**Status:** Completed  
+**Completed:** 2025-12-16 01:55:00
 
 **Sub-tasks:**
-- [ ] Tạo list/table component
-- [ ] Fetch categories từ database
-- [ ] Render categories với name, description
-- [ ] Styling list
+- [x] Tạo list/table component
+- [x] Fetch categories từ database
+- [x] Render categories với name, description
+- [x] Styling list
 
 **Acceptance Criteria:**
-- [ ] Categories hiển thị đúng
-- [ ] List update sau khi thêm/sửa/xóa
-- [ ] Empty state khi không có categories
+- [x] Categories hiển thị đúng
+- [x] List update sau khi thêm/sửa/xóa
+- [x] Empty state khi không có categories
 
 **Files to Create:**
 - `src/admin/components/category-list.js`
@@ -407,19 +514,21 @@
 **Estimate:** 4 hours  
 **Complexity:** Medium  
 **Dependencies:** Database setup
+**Status:** Completed  
+**Completed:** 2025-12-16 01:40:00
 
 **Sub-tasks:**
-- [ ] Implement `addCategory()` function
-- [ ] Implement `getCategories()` function
-- [ ] Implement `updateCategory()` function
-- [ ] Implement `deleteCategory()` function
-- [ ] Error handling
-- [ ] Test CRUD operations
+- [x] Implement `addCategory()` function
+- [x] Implement `getCategories()` function
+- [x] Implement `updateCategory()` function
+- [x] Implement `deleteCategory()` function
+- [x] Error handling
+- [x] Test CRUD operations
 
 **Acceptance Criteria:**
-- [ ] CRUD operations hoạt động đúng
-- [ ] Foreign key constraint được handle
-- [ ] Cascade delete hoạt động (nếu có products)
+- [x] CRUD operations hoạt động đúng
+- [x] Foreign key constraint được handle
+- [x] Cascade delete hoạt động (nếu có products)
 
 **Database:**
 - Table: `categories`
@@ -431,17 +540,19 @@
 **Estimate:** 3 hours  
 **Complexity:** Medium  
 **Dependencies:** Task 2.1.2, Task 2.1.3
+**Status:** Completed  
+**Completed:** 2025-12-16 01:55:00
 
 **Sub-tasks:**
-- [ ] Edit button cho mỗi category
-- [ ] Modal/form để edit
-- [ ] Delete button với confirmation modal
-- [ ] Update UI sau edit/delete
+- [x] Edit button cho mỗi category
+- [x] Modal/form để edit
+- [x] Delete button với confirmation modal
+- [x] Update UI sau edit/delete
 
 **Acceptance Criteria:**
-- [ ] User có thể edit category
-- [ ] Confirmation modal hiển thị trước khi delete
-- [ ] UI update sau operations
+- [x] User có thể edit category
+- [x] Confirmation modal hiển thị trước khi delete
+- [x] UI update sau operations
 
 **Files to Create:**
 - `src/admin/components/category-modal.js`

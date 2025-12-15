@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Register - Bio Affiliate</title>
+    <link rel="stylesheet" href="./auth.css" />
+  </head>
+  <body>
+    <div class="auth-root">
+      <main class="auth-card" aria-labelledby="register-title">
+        <h1 class="auth-title" id="register-title">Create your account</h1>
+        <p class="auth-subtitle">
+          Sign up with email and password to start building your Bio Affiliate page.
+        </p>
+
+        <form class="auth-form" novalidate>
+          <div class="auth-field">
+            <label class="auth-label" for="register-email">Email</label>
+            <input
+              id="register-email"
+              class="auth-input"
+              type="email"
+              name="email"
+              required
+              autocomplete="email"
+            />
+          </div>
+
+          <div class="auth-field">
+            <label class="auth-label" for="register-password">Password</label>
+            <input
+              id="register-password"
+              class="auth-input"
+              type="password"
+              name="password"
+              required
+              minlength="8"
+              autocomplete="new-password"
+            />
+          </div>
+
+          <div class="auth-field">
+            <label class="auth-label" for="register-confirm">
+              Confirm password
+            </label>
+            <input
+              id="register-confirm"
+              class="auth-input"
+              type="password"
+              name="confirmPassword"
+              required
+              minlength="8"
+              autocomplete="new-password"
+            />
+          </div>
+
+          <div class="auth-error" aria-live="polite"></div>
+
+          <button class="auth-button" type="submit">Create account</button>
+        </form>
+
+        <p class="auth-footer">
+          Already have an account?
+          <a href="./login.html">Login</a>
+        </p>
+      </main>
+    </div>
+    <script type="module" src="./auth.js"></script>
+  </body>
+</html>
+
+

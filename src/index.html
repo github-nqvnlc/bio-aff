@@ -1,51 +1,350 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bio Affiliate - Development Server</title>
-  <style>
-    body {
-      font-family: system-ui, -apple-system, sans-serif;
-      max-width: 800px;
-      margin: 50px auto;
-      padding: 20px;
-      line-height: 1.6;
-    }
-    h1 {
-      color: #FF6B9D;
-    }
-    .status {
-      background: #f0f0f0;
-      padding: 20px;
-      border-radius: 8px;
-      margin: 20px 0;
-    }
-    .success {
-      color: #22c55e;
-      font-weight: bold;
-    }
-  </style>
-</head>
-<body>
-  <h1>🚀 Bio Affiliate - Development Server</h1>
-  <div class="status">
-    <p class="success">✅ Vite development server is running!</p>
-    <p>If you can see this page, the development environment is set up correctly.</p>
-    <p><strong>Hot reload:</strong> Try editing this file and save - changes should appear automatically.</p>
-  </div>
-  <div>
-    <h2>Next Steps:</h2>
-    <ul>
-      <li>Setup Supabase project (Task 0.1.3)</li>
-      <li>Configure database schema (Task 0.1.4)</li>
-      <li>Setup Storage buckets (Task 0.1.5)</li>
-    </ul>
-  </div>
-  <script type="module">
-    console.log('✅ Development server loaded successfully!');
-    console.log('Environment:', import.meta.env.MODE);
-  </script>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bio Affiliate - Landing</title>
+    <style>
+      :root {
+        --color-primary: #ff6b9d;
+        --color-secondary: #ffb5d8;
+        --color-background: #fff5f9;
+        --color-surface: #ffffff;
+        --color-text: #333333;
+        --color-muted: #777777;
+        --color-border: rgba(0, 0, 0, 0.08);
+        --color-accent: #ffd166;
+
+        --radius-lg: 24px;
+        --radius-md: 16px;
+
+        --shadow-soft: 0 22px 55px rgba(0, 0, 0, 0.14);
+        --spacing-xs: 8px;
+        --spacing-sm: 12px;
+        --spacing-md: 16px;
+        --spacing-lg: 24px;
+        --spacing-xl: 32px;
+        --spacing-2xl: 40px;
+
+        --font-family-base: system-ui, -apple-system, BlinkMacSystemFont, 'SF Pro Text',
+          'Segoe UI', sans-serif;
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        height: 100%;
+        margin: 0;
+      }
+
+      body {
+        font-family: var(--font-family-base);
+        background: radial-gradient(circle at top, #ffe0f0, #fff5f9 40%, #ffffff);
+        color: var(--color-text);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: var(--spacing-md);
+      }
+
+      .landing-root {
+        width: 100%;
+        max-width: 960px;
+      }
+
+      .landing-layout {
+        display: grid;
+        grid-template-columns: minmax(0, 1.6fr) minmax(0, 1.2fr);
+        gap: var(--spacing-xl);
+        align-items: center;
+      }
+
+      .landing-hero {
+        background-color: var(--color-surface);
+        border-radius: var(--radius-lg);
+        padding: var(--spacing-xl);
+        box-shadow: var(--shadow-soft);
+        border: 1px solid var(--color-border);
+      }
+
+      .landing-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: var(--spacing-xs);
+        padding: 4px var(--spacing-sm);
+        border-radius: 999px;
+        background: rgba(255, 107, 157, 0.1);
+        color: var(--color-primary);
+        font-size: 0.8rem;
+        margin-bottom: var(--spacing-sm);
+      }
+
+      .landing-title {
+        margin: 0 0 var(--spacing-sm);
+        font-size: 2rem;
+      }
+
+      .landing-highlight {
+        color: var(--color-primary);
+      }
+
+      .landing-subtitle {
+        margin: 0 0 var(--spacing-lg);
+        font-size: 0.95rem;
+        color: var(--color-muted);
+      }
+
+      .landing-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--spacing-sm);
+        margin-bottom: var(--spacing-lg);
+      }
+
+      .landing-button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: var(--spacing-sm) var(--spacing-lg);
+        border-radius: 999px;
+        border: none;
+        font-size: 0.95rem;
+        font-weight: 600;
+        cursor: pointer;
+        text-decoration: none;
+        white-space: nowrap;
+      }
+
+      .landing-button-primary {
+        background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+        color: #ffffff;
+      }
+
+      .landing-button-secondary {
+        background-color: var(--color-surface);
+        color: var(--color-text);
+        border: 1px solid var(--color-border);
+      }
+
+      .landing-button-ghost {
+        background: transparent;
+        color: var(--color-muted);
+        border: none;
+      }
+
+      .landing-button:focus-visible {
+        outline: 2px solid var(--color-primary);
+        outline-offset: 2px;
+      }
+
+      .is-hidden {
+        display: none;
+      }
+
+      .landing-meta {
+        font-size: 0.85rem;
+        color: var(--color-muted);
+      }
+
+      .landing-meta strong {
+        color: var(--color-text);
+      }
+
+      .landing-preview {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-md);
+      }
+
+      .preview-card {
+        background-color: var(--color-surface);
+        border-radius: var(--radius-lg);
+        padding: var(--spacing-lg);
+        box-shadow: var(--shadow-soft);
+        border: 1px solid var(--color-border);
+      }
+
+      .preview-title {
+        margin: 0 0 var(--spacing-sm);
+        font-size: 1rem;
+      }
+
+      .preview-description {
+        margin: 0 0 var(--spacing-md);
+        font-size: 0.9rem;
+        color: var(--color-muted);
+      }
+
+      .preview-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 0.9rem;
+        margin-bottom: var(--spacing-xs);
+      }
+
+      .preview-pill {
+        display: inline-flex;
+        align-items: center;
+        padding: 2px 8px;
+        border-radius: 999px;
+        background: rgba(255, 181, 216, 0.25);
+        font-size: 0.75rem;
+        color: var(--color-primary);
+      }
+
+      .preview-links {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        margin-top: var(--spacing-sm);
+      }
+
+      .preview-link {
+        display: flex;
+        justify-content: space-between;
+        padding: 8px 10px;
+        border-radius: var(--radius-md);
+        background: rgba(255, 255, 255, 0.8);
+        border: 1px solid var(--color-border);
+        font-size: 0.85rem;
+      }
+
+      .preview-footer {
+        font-size: 0.8rem;
+        color: var(--color-muted);
+      }
+
+      @media (max-width: 768px) {
+        .landing-layout {
+          grid-template-columns: minmax(0, 1fr);
+        }
+
+        .landing-hero {
+          margin-bottom: var(--spacing-lg);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="landing-root">
+      <div class="landing-layout" aria-labelledby="landing-title">
+        <section class="landing-hero">
+          <div class="landing-pill">
+            <span>✨ TikTok Bio Affiliate Builder</span>
+          </div>
+          <h1 class="landing-title" id="landing-title">
+            Turn your <span class="landing-highlight">TikTok bio</span> into a smart affiliate hub.
+          </h1>
+          <p class="landing-subtitle">
+            Create a beautiful, mobile-first link-in-bio page with drag-and-drop blocks, theme
+            customization and product tracking – powered by Supabase.
+          </p>
+
+          <div class="landing-actions">
+            <a
+              id="primary-action"
+              class="landing-button landing-button-primary"
+              href="/auth/login.html"
+            >
+              Go to Login
+            </a>
+            <a
+              id="bio-preview"
+              class="landing-button landing-button-secondary is-hidden"
+              href="/bio/bio.html"
+            >
+              Preview Bio Page
+            </a>
+          </div>
+
+          <p class="landing-meta">
+            <strong>Stack:</strong> Vanilla JS · Supabase · Vite · CSS Variables · SortableJS
+          </p>
+        </section>
+
+        <aside class="landing-preview" aria-label="App preview">
+          <div class="preview-card">
+            <h2 class="preview-title">Bio Page Snapshot</h2>
+            <p class="preview-description">
+              A simple, themeable page showing your channel info and affiliate products.
+            </p>
+            <div class="preview-row">
+              <span>@your.tiktok.channel</span>
+              <span class="preview-pill">Live Preview</span>
+            </div>
+            <div class="preview-links">
+              <div class="preview-link">
+                <span>Summer Skincare Bundle</span>
+                <span>→</span>
+              </div>
+              <div class="preview-link">
+                <span>Creator Lighting Kit</span>
+                <span>→</span>
+              </div>
+              <div class="preview-link">
+                <span>Top Picks from this week</span>
+                <span>→</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="preview-card">
+            <h2 class="preview-title">Admin Highlights</h2>
+            <p class="preview-description">
+              Manage themes, layouts and products in a dedicated admin dashboard after logging in.
+            </p>
+            <p class="preview-footer">
+              Start by logging in or creating an account, then connect your TikTok channel and
+              configure your layout.
+            </p>
+          </div>
+        </aside>
+      </div>
+    </div>
+    <script type="module">
+      // If dev/build server falls back unknown routes to index.html,
+      // redirect those unknown paths to the dedicated 404 page.
+      const path = window.location.pathname;
+      if (path !== '/' && !path.endsWith('/index.html')) {
+        window.location.replace('/404.html');
+      }
+
+      import { getSupabaseClient } from './shared/storage.js';
+
+      async function setupLandingActions() {
+        const primary = document.getElementById('primary-action');
+        const bioPreview = document.getElementById('bio-preview');
+        if (!primary || !bioPreview) return;
+
+        try {
+          const supabase = getSupabaseClient();
+          const { data } = await supabase.auth.getSession();
+          const session = data.session;
+
+          if (session) {
+            primary.textContent = 'Go to Admin';
+            primary.href = '/admin/admin.html';
+            bioPreview.classList.remove('is-hidden');
+          } else {
+            primary.textContent = 'Go to Login';
+            primary.href = '/auth/login.html';
+            bioPreview.classList.add('is-hidden');
+          }
+        } catch {
+          primary.textContent = 'Go to Login';
+          primary.href = '/auth/login.html';
+          bioPreview.classList.add('is-hidden');
+        }
+      }
+
+      setupLandingActions();
+    </script>
+  </body>
 </html>
 

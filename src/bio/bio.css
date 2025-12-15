@@ -1,0 +1,125 @@
+:root {
+  --color-primary: #ff6b9d;
+  --color-secondary: #ffb5d8;
+  --color-background: #fff5f9;
+  --color-surface: #ffffff;
+  --color-text: #333333;
+  --color-muted: #777777;
+  --color-border: rgba(0, 0, 0, 0.08);
+  --color-accent: #ffd166;
+
+  --radius-full: 999px;
+  --radius-lg: 18px;
+  --radius-md: 12px;
+
+  --shadow-soft: 0 16px 40px rgba(0, 0, 0, 0.12);
+  --spacing-xs: 8px;
+  --spacing-sm: 12px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+
+  --font-family-base: system-ui, -apple-system, BlinkMacSystemFont, 'SF Pro Text',
+    'Segoe UI', sans-serif;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  font-family: var(--font-family-base);
+  background: radial-gradient(circle at top, #ffe0f0, #fff5f9 40%, #ffffff);
+  color: var(--color-text);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bio-root {
+  width: 100%;
+  max-width: 420px;
+  padding: var(--spacing-xl) var(--spacing-lg) var(--spacing-lg);
+}
+
+.bio-header {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-xl);
+}
+
+.avatar {
+  width: 72px;
+  height: 72px;
+  border-radius: var(--radius-full);
+  background: linear-gradient(135deg, #ff6b9d, #ffd166);
+  box-shadow: var(--shadow-soft);
+}
+
+.channel-info {
+  min-width: 0;
+}
+
+.channel-name {
+  margin: 0 0 var(--spacing-xs);
+  font-size: 1.3rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.channel-bio {
+  margin: 0;
+  font-size: 0.95rem;
+  color: var(--color-muted);
+}
+
+.bio-main {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+.bio-link-card {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: var(--spacing-md) var(--spacing-lg);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+  text-decoration: none;
+  color: var(--color-text);
+  box-shadow: var(--shadow-soft);
+  border: 1px solid var(--color-border);
+}
+
+.bio-link-card:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+.bio-link-title {
+  font-weight: 600;
+}
+
+.bio-link-subtitle {
+  font-size: 0.9rem;
+  color: var(--color-muted);
+}
+
+@media (max-width: 480px) {
+  .bio-root {
+    padding-inline: var(--spacing-md);
+  }
+}
+
+

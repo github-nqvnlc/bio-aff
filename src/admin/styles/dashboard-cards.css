@@ -1,0 +1,43 @@
+.dashboard-card {
+  margin-top: var(--spacing-lg);
+  padding: var(--spacing-lg);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border);
+  background: linear-gradient(
+      135deg,
+      rgba(255, 181, 216, 0.08),
+      rgba(255, 107, 157, 0.03)
+    ),
+    #ffffff;
+  box-shadow: var(--shadow-soft);
+}
+
+.dashboard-card:first-of-type {
+  margin-top: 0;
+}
+
+.dashboard-card-title {
+  margin: 0 0 4px;
+  font-size: 1rem;
+}
+
+.dashboard-card-description {
+  margin: 0 0 var(--spacing-md);
+  font-size: 0.9rem;
+  color: var(--color-muted);
+}
+
+.dashboard-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: var(--spacing-md);
+}
+
+@media (max-width: 640px) {
+  .dashboard-card {
+    padding: var(--spacing-md);
+  }
+}
+
+

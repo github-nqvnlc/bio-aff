@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Page Not Found - Bio Affiliate</title>
+    <link rel="stylesheet" href="./auth/auth.css" />
+    <style>
+      body {
+        background: radial-gradient(circle at top, #ffe0f0, #fff5f9 40%, #ffffff);
+        overflow: hidden;
+      }
+
+      .error-orbit {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        overflow: hidden;
+      }
+
+      .error-orbit-dot {
+        position: absolute;
+        width: 14px;
+        height: 14px;
+        border-radius: 999px;
+        background: rgba(255, 107, 157, 0.35);
+        box-shadow: 0 0 20px rgba(255, 107, 157, 0.7);
+        animation: float 8s ease-in-out infinite alternate;
+      }
+
+      .error-orbit-dot:nth-child(1) {
+        top: 10%;
+        left: 15%;
+        animation-delay: 0s;
+      }
+
+      .error-orbit-dot:nth-child(2) {
+        top: 75%;
+        left: 25%;
+        animation-delay: 0.8s;
+      }
+
+      .error-orbit-dot:nth-child(3) {
+        top: 20%;
+        right: 18%;
+        animation-delay: 1.4s;
+      }
+
+      .error-orbit-dot:nth-child(4) {
+        bottom: 12%;
+        right: 10%;
+        animation-delay: 2.1s;
+      }
+
+      @keyframes float {
+        0% {
+          transform: translate3d(0, 0, 0) scale(1);
+          opacity: 0.7;
+        }
+        50% {
+          transform: translate3d(12px, -18px, 0) scale(1.1);
+          opacity: 1;
+        }
+        100% {
+          transform: translate3d(-8px, 14px, 0) scale(0.9);
+          opacity: 0.5;
+        }
+      }
+
+      .error-code {
+        font-size: 3.2rem;
+        font-weight: 800;
+        letter-spacing: 0.08em;
+        margin: 0 0 8px;
+        background: linear-gradient(135deg, #ff6b9d, #ffd166);
+        -webkit-background-clip: text;
+        color: transparent;
+        text-align: center;
+        animation: pulse-code 2.4s ease-in-out infinite;
+      }
+
+      @keyframes pulse-code {
+        0%,
+        100% {
+          transform: translateY(0);
+          text-shadow: 0 0 0 rgba(255, 107, 157, 0.5);
+        }
+        50% {
+          transform: translateY(-4px);
+          text-shadow: 0 12px 30px rgba(255, 107, 157, 0.8);
+        }
+      }
+
+      .glitch-text {
+        position: relative;
+        display: block;
+        text-align: center;
+      }
+
+      .glitch-text::before,
+      .glitch-text::after {
+        content: attr(data-text);
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        overflow: hidden;
+        clip-path: inset(0 0 50% 0);
+        opacity: 0.6;
+      }
+
+      .glitch-text::before {
+        color: #ff6b9d;
+        transform: translate3d(-2px, 0, 0);
+        animation: glitch-horizontal 3s infinite alternate-reverse;
+      }
+
+      .glitch-text::after {
+        color: #ffd166;
+        transform: translate3d(2px, 0, 0);
+        animation: glitch-horizontal 3s infinite alternate;
+      }
+
+      @keyframes glitch-horizontal {
+        0% {
+          clip-path: inset(0 0 60% 0);
+        }
+        50% {
+          clip-path: inset(40% 0 0 0);
+        }
+        100% {
+          clip-path: inset(10% 0 30% 0);
+        }
+      }
+
+      .auth-card {
+        position: relative;
+        overflow: hidden;
+      }
+
+      .auth-card::before {
+        content: '';
+        position: absolute;
+        inset: -40%;
+        background: radial-gradient(circle at top left, rgba(255, 107, 157, 0.12), transparent),
+          radial-gradient(circle at bottom right, rgba(255, 209, 102, 0.12), transparent);
+        opacity: 0.9;
+        z-index: -1;
+      }
+
+      .error-hint {
+        margin-top: 8px;
+        font-size: 0.85rem;
+        color: #777777;
+      }
+
+      .auth-button {
+        animation: float-button 2.4s ease-in-out infinite;
+      }
+
+      @keyframes float-button {
+        0%,
+        100% {
+          transform: translateY(0);
+          box-shadow: 0 10px 25px rgba(255, 107, 157, 0.35);
+        }
+        50% {
+          transform: translateY(-3px);
+          box-shadow: 0 16px 35px rgba(255, 107, 157, 0.5);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="error-orbit" aria-hidden="true">
+      <span class="error-orbit-dot"></span>
+      <span class="error-orbit-dot"></span>
+      <span class="error-orbit-dot"></span>
+      <span class="error-orbit-dot"></span>
+    </div>
+    <div class="auth-root">
+      <main class="auth-card" aria-labelledby="not-found-title">
+        <p class="auth-subtitle glitch-text" data-text="Oops, wrong universe...">
+          Oops, wrong universe...
+        </p>
+        <p class="error-code">404</p>
+        <h1 class="auth-title" id="not-found-title">Page not found</h1>
+        <p class="auth-subtitle">
+          The page you are looking for does not exist or has been moved.
+        </p>
+        <p class="error-hint">
+          You can go back to your dashboard and continue building your Bio Affiliate page.
+        </p>
+
+        <button
+          class="auth-button"
+          type="button"
+          onclick="window.location.href = '/auth/login.html';"
+        >
+          Go back to main page
+        </button>
+      </main>
+    </div>
+  </body>
+</html>
+
+
